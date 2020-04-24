@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {makeStyles} from "@material-ui/core/styles";
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -8,12 +9,19 @@ type Props = {
   startHandler: Function,
 };
 
+const useStyles = makeStyles((theme) => ({
+  button: {
+    margin: [[theme.spacing(2), 0, 0, 0]],
+  },
+}));
+
 const Introduction = (props: Props) => {
   const { startHandler } = props;
+  const classes = useStyles();
 
   return (
     <>
-      <Typography variant="body1">
+      <Typography variant="body1" component="div">
         <p>This questionnaire is designed to find out your preferred learning style(s).
           Over the years you have probably developed learning &quot;habits&quot; that
           help you benefit more from some experiences than from others. Since you are
@@ -32,6 +40,7 @@ const Introduction = (props: Props) => {
         size="large"
         endIcon={<ArrowForwardIosIcon />}
         onClick={startHandler}
+        className={classes.button}
       >
         Let&apos;s get started
       </Button>
