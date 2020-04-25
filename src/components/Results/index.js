@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+
 import Typography from '@material-ui/core/Typography';
 
+import ResultsItem from 'components/ResultsItem';
 import learningTypes from 'data/learningTypes';
 
 type Props = {
@@ -37,18 +39,15 @@ const Results = (props: Props) => {
 
   return (
     <>
+      <Typography variant="subtitle1" component="h2" gutterBottom>
+        Your learning style profile:
+      </Typography>
       {scoresByLearningType.map((learningTypeScore) => (
-        <div key={learningTypeScore.learningTypeKey}>
-          <Typography variant="h5" component="h3">
-            {learningTypes[learningTypeScore.learningTypeKey].title}
-          </Typography>
-          <Typography variant="body1" component="p">
-            {learningTypes[learningTypeScore.learningTypeKey].description}
-          </Typography>
-          <Typography variant="h6" component="p">
-            {learningTypes[learningTypeScore.learningTypeKey].getPreferenceFromScore(learningTypeScore.score)}
-          </Typography>
-        </div>
+        <ResultsItem
+          key={learningTypeScore.learningTypeKey}
+          learningType={learningTypes[learningTypeScore.learningTypeKey]}
+          scoreData={learningTypeScore}
+        />
       ))}
     </>
   );
