@@ -1,14 +1,16 @@
 import React from 'react';
 
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import {useTheme } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import CloseIcon from '@material-ui/icons/Close';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Divider from "@material-ui/core/Divider";
+import IconButton from "@material-ui/core/IconButton";
 import Typography from '@material-ui/core/Typography';
 
 import questions from 'data/questions';
@@ -21,6 +23,19 @@ type Props = {
   scoreData: Object,
 };
 
+const useStyles = makeStyles((theme) => ({
+  headerIcon: {
+    flexGrow: 0,
+    flexShrink: 0,
+    height: '32px',
+    margin: [[0, theme.spacing(1), 0, 0]],
+    width: '32px',
+  },
+  headerContent: {
+    display: 'flex',
+  }
+}));
+
 const ResultsItemDetails = (props: Props) => {
   const {
     isOpen,
@@ -28,9 +43,9 @@ const ResultsItemDetails = (props: Props) => {
     learningType,
     scoreData,
   } = props;
+  const classes = useStyles();
 
   const theme = useTheme();
-
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
@@ -41,7 +56,18 @@ const ResultsItemDetails = (props: Props) => {
       aria-labelledby={`dialog-title-${scoreData.learningTypeKey}`}
     >
       <DialogTitle id={`dialog-title-${scoreData.learningTypeKey}`}>
-        {learningType.title}
+        <div className={classes.headerContent}>
+          <div className={classes.headerIcon}>
+            <IconButton
+              aria-label="Go back 1 question"
+              size="small"
+              onClick={closeHandler}
+            >
+              <CloseIcon />
+            </IconButton>
+          </div>
+          {learningType.title}
+        </div>
       </DialogTitle>
       <DialogContent dividers>
         <DialogContentText component="div">

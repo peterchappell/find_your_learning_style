@@ -7,10 +7,9 @@ import Introduction from 'components/Introduction';
 import Questions from 'components/Questions';
 import Results from 'components/Results';
 
-// import questions from 'data/questions';
+import questions from 'data/questions';
 
-// const totalNumberOfQuestions = questions.length;
-const totalNumberOfQuestions = 10;
+const totalNumberOfQuestions = questions.length;
 
 const useStyles = makeStyles(() => ({
   mainContainer: {
@@ -38,13 +37,25 @@ function AppMain() {
     }
   };
 
+  const goBackOneQuestion = () => {
+    if (currentQuestionNumber) {
+      setCurrentQuestionNumber(currentQuestionNumber -1);
+    } else {
+      setStage('intro');
+    }
+  };
+
   return (
     <Container maxWidth="sm" component="main" className={classes.mainContainer}>
       {(stage === 'intro') &&
         <Introduction startHandler={startQuestionnaire} />
       }
       {(stage === 'questions') &&
-        <Questions saveAnswer={saveAnswer} currentQuestion={currentQuestionNumber} />
+        <Questions
+          saveAnswer={saveAnswer}
+          currentQuestion={currentQuestionNumber}
+          goBack={goBackOneQuestion}
+        />
       }
       {(stage === 'results') &&
         <Results answers={answers.current} />
