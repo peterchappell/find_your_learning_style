@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
@@ -34,59 +34,79 @@ const Questions = (props: Props) => {
     goBack,
   } = props;
   const classes = useStyles();
+  const previousQuestionNumber = useRef();
+  const [doFadeIn, setDoFadeIn] = useState(false);
+  const [answer, setAnswer] = useState();
+
+  const saveAnswerAfterTransition = () => {
+    saveAnswer(currentQuestion, answer);
+  }
 
   const handleAgree = () => {
-    saveAnswer(currentQuestion, true);
+    setAnswer(true);
+    setDoFadeIn(false);
   };
 
   const handleDisagree = () => {
-    saveAnswer(currentQuestion, false);
+    setAnswer(false);
+    setDoFadeIn(false);
   };
 
+  useEffect(() => {
+    if (currentQuestion !== previousQuestionNumber.current) {
+      previousQuestionNumber.current = currentQuestion;
+      setTimeout(() => {
+        setDoFadeIn(true);
+      }, 100);
+    }
+  }, [currentQuestion]);
+
   return (
-    <Card>
-      <CardContent>
-        <Typography variant="subtitle2" component="h2" color="textSecondary" gutterBottom>
-          <Tooltip
-            title={currentQuestion ? `Go back to question ${currentQuestion}` : "Go back"}
-            aria-label="Go back 1 question"
-            placement="top"
-            TransitionComponent={Fade}
-          >
-            <IconButton
-              size="small"
-              onClick={goBack}
+    <Fade in={doFadeIn} onExited={saveAnswerAfterTransition}>
+      <Card>
+        <CardContent>
+          <Typography variant="subtitle2" component="h2" color="textSecondary" gutterBottom>
+            <Tooltip
+              title={currentQuestion ? `Go back to question ${currentQuestion}` : "Go back"}
+              aria-label="Go back 1 question"
+              placement="top"
+              TransitionComponent={Fade}
             >
-              <ArrowBackIcon />
-            </IconButton>
-          </Tooltip>
-          Question {currentQuestion + 1} of {questions.length}
-        </Typography>
-        <Typography variant="h5" component="p">
-          {questions[currentQuestion]}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button
-          color="primary"
-          size="large"
-          startIcon={<CheckIcon />}
-          onClick={handleAgree}
-          className={classes.button}
-        >
-          Mostly Agree
-        </Button>
-        <Button
-          color="primary"
-          size="large"
-          startIcon={<ClearIcon />}
-          onClick={handleDisagree}
-          className={classes.button}
-        >
-          Mostly Disagree
-        </Button>
-      </CardActions>
-    </Card>
+              <IconButton
+                size="small"
+                onClick={goBack}
+              >
+                <ArrowBackIcon />
+              </IconButton>
+            </Tooltip>
+            Question {currentQuestion + 1} of {questions.length}
+          </Typography>
+          <Typography variant="h5" component="p">
+            {questions[currentQuestion]}
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <Button
+            color="primary"
+            size="large"
+            startIcon={<CheckIcon />}
+            onClick={handleAgree}
+            className={classes.button}
+          >
+            Mostly Agree
+          </Button>
+          <Button
+            color="primary"
+            size="large"
+            startIcon={<ClearIcon />}
+            onClick={handleDisagree}
+            className={classes.button}
+          >
+            Mostly Disagree
+          </Button>
+        </CardActions>
+      </Card>
+    </Fade>
   );
 }
 
