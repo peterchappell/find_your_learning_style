@@ -42,6 +42,9 @@ const useStyles = makeStyles((theme) => ({
   },
   responses: {
     marginTop: theme.spacing(2),
+  },
+  attributesContainer: {
+    margin: [[theme.spacing(2), 0]],
   }
 }));
 
@@ -84,6 +87,32 @@ const ResultsItemDetails = (props: Props) => {
           <Typography variant="body1" component="p">
             {learningType.description}
           </Typography>
+          <div className={classes.attributesContainer}>
+            <Typography variant="body1" component="h3">
+              <strong>{learningType.title}s learn best when:</strong>
+            </Typography>
+            {learningType.learnBestWhen.map((attribute, index) => {
+              const key = `${learningType.title}_learn_best_${index}`;
+              return (
+                <Typography variant="body1" component="li" key={key}>
+                  {attribute}
+                </Typography>
+              );
+            })}
+          </div>
+          <div className={classes.attributesContainer}>
+            <Typography variant="body1" component="h3">
+              <strong>{learningType.title}s learn least when:</strong>
+            </Typography>
+            {learningType.learnLeastWhen.map((attribute, index) => {
+              const key = `${learningType.title}_learn_least_${index}`;
+              return (
+                <Typography variant="body1" component="li" key={key}>
+                  {attribute}
+                </Typography>
+              );
+            })}
+          </div>
           <Divider className={classes.divider} />
           <Typography variant="subtitle1" component="p">
             You agreed with {scoreData.score} of the statements corresponding to the {learningType.title} learning style. Your preference for the <strong>{learningType.title}</strong> learning style is <strong>{scoreLevel}</strong> (Based on general norms for 1302 people).

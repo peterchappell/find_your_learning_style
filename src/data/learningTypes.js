@@ -1,7 +1,21 @@
 export default {
   activist: {
     title: "Activist",
-    description: "Activists involve themselves fully and without bias in new experiences. They enjoy the here and now and are happy to be dominated by immediate experiences. They are open-minded, not sceptical, and this tends to make them enthusiastic about anything new. Their philosophy is: \"I'll try anything once\". They tend to act first and consider the consequences afterwards. Their days are filled with activity. They tackle problems by brainstorming. As soon as the excitement from one activity has died down they are busy looking for the next. They tend to thrive on the challenge of new experiences but are bored with implementation and longer-term consolidation. They are gregarious people constantly involving themselves with others but in doing so; they seek to centre all activities on themselves.",
+    description: "Activists are people who learn by doing. They like to involve themselves\n" +
+      "in new experiences, and will \"try anything once\". They tend to act first and\n" +
+      "consider the consequences afterwards. ",
+    learnBestWhen: [
+      "involved in new experiences, problems and opportunities",
+      "thrown in at the deep end",
+      "working with others in problem solving, games, role-playing exercises",
+      "able to lead a group.",
+    ],
+    learnLeastWhen: [
+      "listening to lectures or reading long explanations",
+      "reading, writing and thinking on their own",
+      "analysing and interpreting lots of data",
+      "following precise instructions",
+    ],
     questionIndexes: [1, 3, 5, 9, 16, 22, 23, 31, 33, 37, 39, 42, 44, 47, 57, 63, 70, 71, 73, 78],
     scoreCategories: [
       {
@@ -30,25 +44,24 @@ export default {
         maxScore: 20,
       }
     ],
-    getPreferenceFromScore: (score) => {
-      if (score > 12) {
-        return 'Very Strong';
-      }
-      if (score > 10) {
-        return 'Strong';
-      }
-      if (score > 6) {
-        return 'Moderate';
-      }
-      if (score > 3) {
-        return 'Low';
-      }
-      return 'Very Low';
-    }
   },
   reflector: {
     title: "Reflector",
-    description: "Reflectors like to stand back to ponder experiences and observe them from many different perspectives. They collect data, both first hand and from others, and prefer to think about it thoroughly before coming to any conclusion. The thorough collection and analysis of data about experiences and events is what counts so they tend to postpone reaching definitive conclusions for as long as possible. Their philosophy is to be cautious. They are thoughtful people who like to consider all possible angles and implications before making a move. They prefer to take a back seat in meetings and discussions. They enjoy observing other people in action. They listen to others and get the drift of the discussion before making their own points. They tend to adopt a low profile and have a slightly distant, tolerant unruffled air about them. When they act it is part of a wide picture which includes the past as well as the present and others' observations as well as their own.",
+    description: "Reflectors learn by observing and thinking about what happened. They like\n" +
+      "to consider all the possible angles and implications before coming to a\n" +
+      "considered opinion. They spend time listening and observing, and tend to\n" +
+      "be cautious and thoughtful. ",
+    learnBestWhen: [
+      "able to stand back and observe first",
+      "given time to think and investigate before commenting or acting",
+      "given an opportunity to review what has happened",
+      "doing tasks without tight deadlines",
+    ],
+    learnLeastWhen: [
+      "forced to take a lead in a group",
+      "doing things without preparation",
+      "rushed by deadlines"
+    ],
     questionIndexes: [6, 12, 14, 15, 24, 27, 28, 30, 32, 35, 38, 40, 45, 51, 54, 59, 61, 65, 66, 75],
     scoreCategories: [
       {
@@ -77,25 +90,24 @@ export default {
         maxScore: 20,
       }
     ],
-    getPreferenceFromScore: (score) => {
-      if (score > 17) {
-        return 'Very Strong';
-      }
-      if (score > 14) {
-        return 'Strong';
-      }
-      if (score > 11) {
-        return 'Moderate';
-      }
-      if (score > 8) {
-        return 'Low';
-      }
-      return 'Very Low';
-    }
   },
   theorist: {
     title: "Theorist",
-    description: "Theorists adapt and integrate observations into complex but logically sound theories. They think problems through in a vertical, step-by-step logical way. They assimilate disparate facts into coherent theories. They tend to be perfectionists who won't rest easy until things are tidy and fit into a rational scheme. They like to analyse and synthesise. They are keen on basic assumptions, principles, theories models and systems thinking. Their philosophy prizes rationality and logic.  \"If it's logical it's good\". Questions they frequently ask are: \"Does it make sense?\" \"How does this fit with that?\" \"What are the basic assumptions?\" They tend to be detached, analytical and dedicated to rational objectivity rather than anything subjective or ambiguous. Their approach to problems is consistently logical. This is their \"mental set\" and they rigidly reject anything that doesn't fit with it. They prefer to maximise certainty and feel uncomfortable with subjective judgments, lateral thinking and anything flippant.",
+    description: "Theorists like to understand the theory behind the actions. They need\n" +
+      "models, concepts and facts in order to learn. They like to analyse and\n" +
+      "synthesise, and feel uncomfortable with subjective judgements.",
+    learnBestWhen: [
+      "an activity is backed up by ideas and concepts that form a model, system\n" +
+      "or theory",
+      "in a structured situation with a clear purpose",
+      "they have the chance to question and probe",
+      "required to understand a complex situation"
+    ],
+    learnLeastWhen: [
+      "in situations that emphasise emotions and feelings",
+      "when activities are unstructured or ambiguous",
+      "when asked to act without knowing the principles or concepts involved",
+    ],
     questionIndexes: [0, 2, 7, 11, 13, 17, 19, 21, 25, 29, 41, 46, 50, 56, 60, 62, 67, 74, 76, 77],
     scoreCategories: [
       {
@@ -124,25 +136,23 @@ export default {
         maxScore: 20,
       }
     ],
-    getPreferenceFromScore: (score) => {
-      if (score > 15) {
-        return 'Very Strong';
-      }
-      if (score > 13) {
-        return 'Strong';
-      }
-      if (score > 10) {
-        return 'Moderate';
-      }
-      if (score > 7) {
-        return 'Low';
-      }
-      return 'Very Low';
-    }
   },
   pragmatist: {
     title: "Pragmatist",
-    description: "Pragmatists are keen on trying out ideas, theories and techniques to see if they work in practice. They positively search out new ideas and take the first opportunity to experiment with applications. They are the sorts of people who return from management courses brimming with new ideas that they want to try out in practice. They like to get on with things and act quickly and confidently on ideas that attract them. They tend to be impatient with ruminating and open-ended discussions. They are essentially practical, down to earth\tpile who like making practical decisions and solving problems. They respond to problems and opportunities \"as a challenge\". Their philosophy is: \"There is always a better way\" and \"if it works it's good\".",
+    description: "Pragmatists are keen on trying things out. They look for new ideas that can\n" +
+      "be applied to the problem in hand. They like to get on with things and tend \n" +
+      "to be impatient with open-ended discussions; they are practical, down-toearth people.",
+    learnBestWhen: [
+      "there is an obvious link between the topic and a current need",
+      "they are shown techniques with clear practical advantages",
+      "they can try things out with feedback from an expert",
+      "they can copy an example, or emulate a role model",
+    ],
+    learnLeastWhen: [
+      "there is no immediate practical benefit",
+      "there are no clear guidelines on how to do it",
+      "it appears to be \"all theory\"",
+    ],
     questionIndexes: [4, 8, 10, 18, 20, 26, 34, 36, 43, 48, 49, 52, 53, 55, 58, 64, 68, 69, 72, 79],
     scoreCategories: [
       {
@@ -171,20 +181,5 @@ export default {
         maxScore: 20,
       }
     ],
-    getPreferenceFromScore: (score) => {
-      if (score > 16) {
-        return 'Very Strong';
-      }
-      if (score > 14) {
-        return 'Strong';
-      }
-      if (score > 11) {
-        return 'Moderate';
-      }
-      if (score > 8) {
-        return 'Low';
-      }
-      return 'Very Low';
-    }
   },
 }

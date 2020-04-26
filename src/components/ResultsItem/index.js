@@ -57,7 +57,7 @@ const ResultsItem = (props: Props) => {
         <Typography variant="h5" component="h2" gutterBottom>
           {learningType.title}
         </Typography>
-        <Typography variant="body1" component="p" noWrap gutterBottom>
+        <Typography variant="body1" component="p" gutterBottom>
           {learningType.description}
         </Typography>
         <div className={classes.results}>
