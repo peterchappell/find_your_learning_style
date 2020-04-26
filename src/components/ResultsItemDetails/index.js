@@ -45,6 +45,10 @@ const useStyles = makeStyles((theme) => ({
   },
   attributesContainer: {
     margin: [[theme.spacing(2), 0]],
+  },
+  attributesList: {
+    margin: [[theme.spacing(1), 0]],
+    paddingLeft: theme.spacing(4),
   }
 }));
 
@@ -91,27 +95,31 @@ const ResultsItemDetails = (props: Props) => {
             <Typography variant="body1" component="h3">
               <strong>{learningType.title}s learn best when:</strong>
             </Typography>
-            {learningType.learnBestWhen.map((attribute, index) => {
-              const key = `${learningType.title}_learn_best_${index}`;
-              return (
-                <Typography variant="body1" component="li" key={key}>
-                  {attribute}
-                </Typography>
-              );
-            })}
+            <ul className={classes.attributesList}>
+              {learningType.learnBestWhen.map((attribute, index) => {
+                const key = `${learningType.title}_learn_best_${index}`;
+                return (
+                  <Typography variant="body1" component="li" key={key}>
+                    {attribute}
+                  </Typography>
+                );
+              })}
+            </ul>
           </div>
           <div className={classes.attributesContainer}>
             <Typography variant="body1" component="h3">
               <strong>{learningType.title}s learn least when:</strong>
             </Typography>
-            {learningType.learnLeastWhen.map((attribute, index) => {
-              const key = `${learningType.title}_learn_least_${index}`;
-              return (
-                <Typography variant="body1" component="li" key={key}>
-                  {attribute}
-                </Typography>
-              );
-            })}
+            <ul className={classes.attributesList}>
+              {learningType.learnLeastWhen.map((attribute, index) => {
+                const key = `${learningType.title}_learn_least_${index}`;
+                return (
+                  <Typography variant="body1" component="li" key={key}>
+                    {attribute}
+                  </Typography>
+                );
+              })}
+            </ul>
           </div>
           <Divider className={classes.divider} />
           <Typography variant="subtitle1" component="p">
@@ -124,10 +132,10 @@ const ResultsItemDetails = (props: Props) => {
           <div className={classes.responses}>
             {learningType.questionIndexes.map((questionIndex) => (
               <Grid container spacing={3} key={`${learningType.title}_question_${questionIndex}`}>
-                <Grid item xs={10}>
+                <Grid item xs={11}>
                   {questions[questionIndex]}
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={1}>
                   { scoreData.responses[questionIndex] ? <CheckIcon /> : <ClearIcon /> }
                 </Grid>
               </Grid>

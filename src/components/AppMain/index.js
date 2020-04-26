@@ -7,9 +7,10 @@ import Introduction from 'components/Introduction';
 import Questions from 'components/Questions';
 import Results from 'components/Results';
 
-import questions from 'data/questions';
+// import questions from 'data/questions';
 
-const totalNumberOfQuestions = questions.length;
+// const totalNumberOfQuestions = questions.length;
+const totalNumberOfQuestions = 5;
 
 const useStyles = makeStyles(() => ({
   mainContainer: {
