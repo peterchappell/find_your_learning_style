@@ -13,6 +13,7 @@ const totalNumberOfQuestions = questions.length;
 
 const useStyles = makeStyles(() => ({
   mainContainer: {
+    flexGrow: 1,
     marginBottom: '60px',
     marginTop: '100px',
   },
