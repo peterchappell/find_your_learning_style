@@ -3,6 +3,8 @@ import React from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import CheckIcon from '@material-ui/icons/Check';
+import ClearIcon from '@material-ui/icons/Clear';
 import CloseIcon from '@material-ui/icons/Close';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -10,17 +12,18 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Divider from "@material-ui/core/Divider";
+import Grid from '@material-ui/core/Grid';
 import IconButton from "@material-ui/core/IconButton";
 import Typography from '@material-ui/core/Typography';
 
 import questions from 'data/questions';
-import ResultsItemAnswer from 'components/ResultsItemAnswer';
 
 type Props = {
   isOpen: boolean,
   closeHandler: Function,
   learningType: Object,
   scoreData: Object,
+  scoreLevel: string,
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -33,6 +36,12 @@ const useStyles = makeStyles((theme) => ({
   },
   headerContent: {
     display: 'flex',
+  },
+  divider: {
+    margin: [[theme.spacing(2), 0]],
+  },
+  responses: {
+    marginTop: theme.spacing(2),
   }
 }));
 
@@ -42,6 +51,7 @@ const ResultsItemDetails = (props: Props) => {
     closeHandler,
     learningType,
     scoreData,
+    scoreLevel,
   } = props;
   const classes = useStyles();
 
@@ -74,17 +84,26 @@ const ResultsItemDetails = (props: Props) => {
           <Typography variant="body1" component="p">
             {learningType.description}
           </Typography>
-          <Divider variant="middle" />
+          <Divider className={classes.divider} />
           <Typography variant="subtitle1" component="p">
-            <strong>These were your answers to the {learningType.title} questions:</strong>
+            You agreed with {scoreData.score} of the statements corresponding to the {learningType.title} learning style. Your preference for the <strong>{learningType.title}</strong> learning style is <strong>{scoreLevel}</strong> (Based on general norms for 1302 people).
           </Typography>
-          {learningType.questionIndexes.map((questionIndex) => (
-            <ResultsItemAnswer
-              questionNumber={questionIndex + 1}
-              question={questions[questionIndex]}
-              answer={scoreData.responses[questionIndex]}
-            />
-          ))}
+          <Divider className={classes.divider} />
+          <Typography variant="subtitle1" component="p">
+            <strong>These were your responses to the {learningType.title} statements:</strong>
+          </Typography>
+          <div className={classes.responses}>
+            {learningType.questionIndexes.map((questionIndex) => (
+              <Grid container spacing={3} key={`${learningType.title}_question_${questionIndex}`}>
+                <Grid item xs={10}>
+                  {questions[questionIndex]}
+                </Grid>
+                <Grid item xs={2}>
+                  { scoreData.responses[questionIndex] ? <CheckIcon /> : <ClearIcon /> }
+                </Grid>
+              </Grid>
+            ))}
+          </div>
         </DialogContentText>
       </DialogContent>
       <DialogActions>

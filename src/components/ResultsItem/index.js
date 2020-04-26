@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import {makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Divider from "@material-ui/core/Divider";
 import Typography from '@material-ui/core/Typography';
 
+import ResultsItemsScoreChart from 'components/ResultsItemScoreChart';
 import ResultsItemDetails from 'components/ResultsItemDetails';
 
 type Props = {
@@ -19,13 +19,8 @@ const useStyles = makeStyles((theme) => ({
   learningTypeCard: {
     margin: [[theme.spacing(2), 0]],
   },
-  shortDescription: {
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
-  },
-  divider: {
-    margin: [[theme.spacing(2), 0]],
+  results: {
+    margin: [[theme.spacing(3), 0, 0]],
   }
 }));
 
@@ -38,6 +33,7 @@ const ResultsItem = (props: Props) => {
   const classes = useStyles();
 
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+  const [scoreLevel, setScoreLevel] = useState('');
 
   const openDetails = () => {
     setIsDetailsOpen(true);
@@ -47,22 +43,34 @@ const ResultsItem = (props: Props) => {
     setIsDetailsOpen(false);
   };
 
+  useEffect(() => {
+    let scoreCategory = learningType.scoreCategories.find(category => scoreData.score >= category.minScore && scoreData.score <= category.maxScore);
+    if (!scoreCategory) {
+      [scoreCategory] = learningType.scoreCategories;
+    }
+    setScoreLevel(scoreCategory.name);
+  }, [scoreData, learningType]);
+
   return (
     <Card className={classes.learningTypeCard}>
       <CardContent>
         <Typography variant="h5" component="h2" gutterBottom>
           {learningType.title}
         </Typography>
-        <Typography variant="body1" component="p" className={classes.shortDescription}>
+        <Typography variant="body1" component="p" noWrap gutterBottom>
           {learningType.description}
         </Typography>
-        <Divider />
-        <Typography variant="subtitle2" component="p" className={classes.shortDescription}>
-          Your score
-        </Typography>
-        <Typography variant="h6" component="p">
-          {` ${learningType.getPreferenceFromScore(scoreData.score)}`}
-        </Typography>
+        <div className={classes.results}>
+          <ResultsItemsScoreChart
+            learningType={learningType}
+            score={scoreData.score}
+          />
+          <Typography variant="body1" component="p">
+            <strong>{scoreLevel}</strong>
+            {` `}
+            ({scoreData.score}/{learningType.questionIndexes.length})
+          </Typography>
+        </div>
       </CardContent>
       <CardActions>
         <Button
@@ -70,13 +78,14 @@ const ResultsItem = (props: Props) => {
           size="large"
           onClick={openDetails}
         >
-          More details
+          Details
         </Button>
       </CardActions>
       <ResultsItemDetails
         isOpen={isDetailsOpen}
         closeHandler={closeDetails}
         scoreData={scoreData}
+        scoreLevel={scoreLevel}
         learningType={learningType}
       />
     </Card>
