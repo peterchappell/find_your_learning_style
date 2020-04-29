@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import { render, cleanup, screen } from 'utils/test-utils';
 import mockLearningTypes from 'data/__mocks/learningTypes';

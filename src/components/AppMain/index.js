@@ -1,3 +1,4 @@
+// @flow
 import React, { useState, useRef } from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -30,7 +31,7 @@ function AppMain() {
   };
 
   const saveAnswer = (questionNumber, answer) => {
-    answers.current[String(questionNumber)] = answer;
+    answers.current[questionNumber] = answer;
     if (questionNumber + 1 < totalNumberOfQuestions) {
       setCurrentQuestionNumber(currentQuestionNumber + 1);
     } else {

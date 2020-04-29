@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import { render, cleanup, screen, fireEvent } from 'utils/test-utils';
 import { act } from "react-dom/test-utils";

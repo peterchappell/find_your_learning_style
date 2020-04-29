@@ -1,3 +1,4 @@
+// @flow
 import React, { useState } from 'react';
 
 import {makeStyles } from "@material-ui/core/styles";
@@ -9,10 +10,11 @@ import Typography from '@material-ui/core/Typography';
 
 import ResultsItemsScoreChart from 'components/ResultsItemScoreChart';
 import ResultsItemDetails from 'components/ResultsItemDetails';
+import { LearningType, Score } from 'utils/flow-types';
 
 type Props = {
-  learningType: Object,
-  scoreData: Object,
+  learningType: LearningType,
+  scoreData: Score,
 };
 
 const useStyles = makeStyles((theme) => ({

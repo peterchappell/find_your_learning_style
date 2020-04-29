@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -17,12 +18,13 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from '@material-ui/core/Typography';
 
 import questions from 'data/questions';
+import { LearningType, Score } from 'utils/flow-types';
 
 type Props = {
   isOpen: boolean,
   closeHandler: Function,
-  learningType: Object,
-  scoreData: Object,
+  learningType: LearningType,
+  scoreData: Score,
 };
 
 const useStyles = makeStyles((theme) => ({

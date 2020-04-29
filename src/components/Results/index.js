@@ -1,12 +1,14 @@
+// @flow
 import React, { useEffect, useState } from 'react';
 
 import Typography from '@material-ui/core/Typography';
 
 import ResultsItem from 'components/ResultsItem';
 import learningTypes from 'data/learningTypes';
+import { Answers } from 'utils/flow-types';
 
 type Props = {
-  answers: Object,
+  answers: Answers,
 };
 
 export const buildCategorisedScores = (answers) => {

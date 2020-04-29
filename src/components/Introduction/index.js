@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 
 import {makeStyles} from "@material-ui/core/styles";
@@ -6,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 type Props = {
-  startHandler: Function,
+  startHandler: SyntheticEvent<HTMLButtonElement>,
 };
 
 const useStyles = makeStyles((theme) => ({

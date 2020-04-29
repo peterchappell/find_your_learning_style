@@ -1,11 +1,14 @@
+// @flow
 import React from 'react';
 
 import { makeStyles, lighten, withTheme } from "@material-ui/core/styles";
 import Fade from "@material-ui/core/Fade";
 import Tooltip from '@material-ui/core/Tooltip';
 
+import { LearningType } from 'utils/flow-types';
+
 type Props = {
-  learningType: Object,
+  learningType: LearningType,
   score: number,
   theme: Object,
 };
