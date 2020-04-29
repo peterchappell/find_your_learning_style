@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import AppBar from '@material-ui/core/AppBar';
 import Link from '@material-ui/core/Link';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -10,14 +11,20 @@ import AppMain from 'components/AppMain';
 
 const useStyles = makeStyles((theme) => ({
   footerContainer: {
+    backgroundColor: theme.palette.background.default,
     flexShrink: 0,
-    margin: [[theme.spacing(2), theme.spacing(3)]],
+    padding: [[theme.spacing(2), theme.spacing(2)]],
+  },
+  footerContainerLarge: {
     textAlign: 'center',
+    padding: [[theme.spacing(2), theme.spacing(3)]],
   }
 }));
 
 function App() {
   const classes = useStyles();
+  const theme = useTheme();
+  const isLargeDevice = useMediaQuery(theme.breakpoints.up('sm'));
 
   return (
     <>
@@ -29,7 +36,7 @@ function App() {
         </Toolbar>
       </AppBar>
       <AppMain />
-      <Typography variant="body2" component="footer" className={classes.footerContainer}>
+      <Typography variant="body2" component="footer" className={`${classes.footerContainer} ${isLargeDevice ? classes.footerContainerLarge : ''}`}>
         {`This tool uses `}
         <Link href="https://en.wikipedia.org/wiki/Learning_styles#Peter_Honey_and_Alan_Mumford's_model" target="_blank" rel="noopener noreferrer" variant="body2">
           Honey and Mumford&apos;s Learning Styles Questionnaire
