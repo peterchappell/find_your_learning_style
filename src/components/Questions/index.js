@@ -53,28 +53,38 @@ const Questions = (props: Props) => {
   };
 
   useEffect(() => {
+    let isMounted = true;
+    let timeout;
     if (currentQuestion !== previousQuestionNumber.current) {
       previousQuestionNumber.current = currentQuestion;
-      setTimeout(() => {
-        setDoFadeIn(true);
-      }, 100);
+      if (isMounted) {
+        timeout = setTimeout(() => {
+          setDoFadeIn(true);
+        }, 100);
+      }
+    }
+
+    return () => {
+      clearTimeout(timeout);
+      isMounted = false;
     }
   }, [currentQuestion]);
 
   return (
     <Fade in={doFadeIn} onExited={saveAnswerAfterTransition}>
-      <Card>
+      <Card data-testid="questions">
         <CardContent>
           <Typography variant="subtitle2" component="h2" color="textSecondary" gutterBottom>
             <Tooltip
               title={currentQuestion ? `Go back to question ${currentQuestion}` : "Go back"}
-              aria-label="Go back 1 question"
+              aria-label={currentQuestion ? `Go back to question ${currentQuestion}` : "Go back"}
               placement="top"
               TransitionComponent={Fade}
             >
               <IconButton
                 size="small"
                 onClick={goBack}
+                data-testid="back_button"
               >
                 <ArrowBackIcon />
               </IconButton>
@@ -92,6 +102,7 @@ const Questions = (props: Props) => {
             startIcon={<CheckIcon />}
             onClick={handleAgree}
             className={classes.button}
+            data-testid="agree_button"
           >
             Mostly Agree
           </Button>
@@ -101,6 +112,7 @@ const Questions = (props: Props) => {
             startIcon={<ClearIcon />}
             onClick={handleDisagree}
             className={classes.button}
+            data-testid="disagree_button"
           >
             Mostly Disagree
           </Button>

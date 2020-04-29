@@ -23,7 +23,6 @@ type Props = {
   closeHandler: Function,
   learningType: Object,
   scoreData: Object,
-  scoreLevel: string,
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -58,7 +57,6 @@ const ResultsItemDetails = (props: Props) => {
     closeHandler,
     learningType,
     scoreData,
-    scoreLevel,
   } = props;
   const classes = useStyles();
 
@@ -76,9 +74,10 @@ const ResultsItemDetails = (props: Props) => {
         <div className={classes.headerContent}>
           <div className={classes.headerIcon}>
             <IconButton
-              aria-label="Go back 1 question"
+              aria-label="Go back to results"
               size="small"
               onClick={closeHandler}
+              data-testid="close_button_icon"
             >
               <CloseIcon />
             </IconButton>
@@ -123,7 +122,7 @@ const ResultsItemDetails = (props: Props) => {
           </div>
           <Divider className={classes.divider} />
           <Typography variant="subtitle1" component="p">
-            You agreed with {scoreData.score} of the statements corresponding to the {learningType.title} learning style. Your preference for the <strong>{learningType.title}</strong> learning style is <strong>{scoreLevel}</strong> (Based on general norms for 1302 people).
+            You agreed with {scoreData.score} of the statements corresponding to the {learningType.title} learning style. Your preference for the <strong>{learningType.title}</strong> learning style is <strong>{scoreData.scoreCategory.name}</strong> (Based on general norms for 1302 people).
           </Typography>
           <Divider className={classes.divider} />
           <Typography variant="subtitle1" component="p">
@@ -136,7 +135,7 @@ const ResultsItemDetails = (props: Props) => {
                   {questions[questionIndex]}
                 </Grid>
                 <Grid item xs={1}>
-                  { scoreData.responses[questionIndex] ? <CheckIcon /> : <ClearIcon /> }
+                  { scoreData.responses[questionIndex] ? <CheckIcon titleAccess="Mostly agree" /> : <ClearIcon titleAccess="Mostly disagree" /> }
                 </Grid>
               </Grid>
             ))}
@@ -144,7 +143,7 @@ const ResultsItemDetails = (props: Props) => {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={closeHandler} color="primary" autoFocus>
+        <Button onClick={closeHandler} color="primary" autoFocus data-testid="close_button_text">
           Close
         </Button>
       </DialogActions>

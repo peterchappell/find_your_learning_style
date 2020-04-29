@@ -49,6 +49,7 @@ const ResultsItemsScoreChart = (props: Props) => {
       width = (scoreCategory.maxScore)/learningType.questionIndexes.length * 100;
       return (
         <div
+          data-testid="category_bar"
           className={classes.scoreBar}
           style={{ width: `${width}%`, backgroundColor: `${bgColor}`, zIndex }}
         />
@@ -58,6 +59,7 @@ const ResultsItemsScoreChart = (props: Props) => {
       width = score/learningType.questionIndexes.length * 100;
       return (
         <div
+          data-testid="category_bar"
           className={classes.scoreBar}
           style={{ width: `${width}%`, backgroundColor: `${bgColor}`, zIndex }}
         />
@@ -80,6 +82,7 @@ const ResultsItemsScoreChart = (props: Props) => {
             >
               <div
                 className={classes.categoryMarker}
+                data-testid="category_marker"
                 style={{ width: `${(scoreCategory.maxScore)/learningType.questionIndexes.length * 100}%`, zIndex, }}
               />
             </Tooltip>

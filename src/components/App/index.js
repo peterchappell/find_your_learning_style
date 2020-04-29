@@ -39,7 +39,7 @@ function App() {
         <Link href="https://www.open.edu/openlearn/ocw/pluginfile.php/629607/mod_resource/content/1/t175_4_3.pdf" target="_blank" rel="noopener noreferrer" variant="body2">
           The Open University
         </Link>
-        . No data will be saved by this tool.
+        . Your responses will not be stored.
       </Typography>
     </>
   );

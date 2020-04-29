@@ -21,7 +21,7 @@ const Introduction = (props: Props) => {
 
   return (
     <>
-      <Typography variant="body1" component="div">
+      <Typography variant="body1" component="div" data-testid="introduction">
         <p>This tool helps you understand the way you learn. It is a proven tool
           developed by Peter Honey and Alan Mumford.</p>
         <p>Take as long as you need to do the questionnaire. It will probably take you 10-15
@@ -35,6 +35,7 @@ const Introduction = (props: Props) => {
         endIcon={<ArrowForwardIosIcon />}
         onClick={startHandler}
         className={classes.button}
+        data-testid="start_button"
       >
         Let&apos;s get started
       </Button>
