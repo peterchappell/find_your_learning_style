@@ -1,3 +1,8 @@
+This project is a simple front-end only react application. It is an online version of 
+[Honey and Mumford's Learning Styles Questionnaire](https://en.wikipedia.org/wiki/Learning_styles#Peter_Honey_and_Alan_Mumford's_model).
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

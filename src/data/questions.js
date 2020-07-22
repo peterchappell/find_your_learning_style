@@ -12,7 +12,7 @@ export default [
 "When I hear about a new idea or approach I immediately start working out how to apply it in practice",
 "I am keen on self discipline such as watching my diet, taking regular exercise, sticking to a fixed routine, etc.",
 "I take pride in doing a thorough job",
-"I get on best with logical, analytical people and less well with spontaneous, \"irrational\"",
+"I get on best with logical, analytical people and less well with spontaneous, \"irrational\" people",
 "I take care over the interpretation of data available to me and avoid jumping to conclusions",
 "I like to reach a decision carefully after weighing up many alternatives",
 "I'm attracted more to novel, unusual ideas than to practical ones",

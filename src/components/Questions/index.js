@@ -72,7 +72,7 @@ const Questions = (props: Props) => {
 
   return (
     <Fade in={doFadeIn} onExited={saveAnswerAfterTransition}>
-      <Card data-testid="questions">
+      <Card data-testid="questions" raised>
         <CardContent>
           <Typography variant="subtitle2" component="h2" color="textSecondary" gutterBottom>
             <Tooltip
